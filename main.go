@@ -16,6 +16,8 @@ func main() {
 	viper.SetConfigName("minifluxauto")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(".")
+	viper.AddConfigPath("/etc")
+	viper.AddConfigPath("$HOME")
 	err := viper.ReadInConfig()
 	if err != nil {
 		panic(fmt.Errorf("fatal error config file: %w", err))

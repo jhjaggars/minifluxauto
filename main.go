@@ -39,7 +39,11 @@ func main() {
 		for _, entry := range expire_entries.Entries {
 			entries_actual = append(entries_actual, entry.ID)
 		}
-		fmt.Println("Marking", len(entries_actual), "entries for feed_id", feed_id)
-		client.UpdateEntries(entries_actual, miniflux.EntryStatusRead)
+		if len(entries_actual) > 0 {
+			fmt.Println("Marking", len(entries_actual), "entries for feed_id", feed_id)
+			client.UpdateEntries(entries_actual, miniflux.EntryStatusRead)
+		} else {
+			fmt.Println("No entries to mark for feed_id", feed_id)
+		}
 	}
 }

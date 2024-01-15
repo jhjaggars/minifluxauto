@@ -32,7 +32,7 @@ func main() {
 	for feed_id, expire_duration := range parsed_expires {
 		expire_entries, err := client.FeedEntries(feed_id, &miniflux.Filter{Status: "unread", Before: time.Now().Add(-expire_duration).Unix()})
 		if err != nil {
-			fmt.Println("Error getting feed entries for feed_id", feed_id)
+			fmt.Printf("Error getting feed entries for feed_id: %d: %v\n", feed_id, err)
 			continue
 		}
 		entries_actual := []int64{}

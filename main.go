@@ -55,6 +55,7 @@ func main() {
 			fmt.Printf("Error getting feeds for category_id: %d: %v\n", category_id, err)
 			continue
 		}
+		fmt.Println("Expiring Category", category_id, "with", len(feeds), "feeds")
 		for _, feed := range feeds {
 			expire(client, feed.ID, expire_duration)
 		}
